@@ -32,8 +32,25 @@ app.get('/', (요청, 응답) => {
 })
     //위 코드는 경로를 잡아준 것! 
     //__dirname : 현재 프로젝트 절대 경로!
-    //  /index.html : 이렇게 한 이유는 지금 index.html을 어떤 폴더 안에 넣어준게 아니라 루트에 있으니까 앞에 루트라고 해준 것!
+//  /index.html : 이렇게 한 이유는 지금 index.html을 어떤 폴더 안에 넣어준게 아니라 루트에 있으니까 앞에 루트라고 해준 것!
 
+//누가 메인페이지 방문시 html 파일 보내라고 코드는 이렇게 짭니다. 
+
+/*
+1. 응답.send가 아니라.sendFile('파일경로') 입력하면 이 파일을 유저에게 보내줍니다. 
+
+2. 파일경로를 적고 싶으면 
+
+__dirname이라고 쓰면(언더바 2개) 현재 server.js 파일의 절대경로가 나옵니다.
+
+근데 index.html은 server.js와 같은 폴더에 있으니까
+
+__dirname 뒤에 / index.html 만 추가하면 index.html 파일경로가 나옵니다. */
+
+
+//숙제 완료
 app.get('/about', (요청, 응답) => {
     응답.sendFile(__dirname + '/my.html')
 })
+
+
