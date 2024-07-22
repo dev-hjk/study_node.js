@@ -1,0 +1,21 @@
+# Node.js 관련 파일/디렉토리 무시
+node_modules/
+npm-debug.log
+yarn-error.log
+.env
+
+# 디렉토리 무시
+dist/
+build/
+coverage/
+
+# OS 관련 파일 무시
+.DS_Store
+Thumbs.db
+
+# IDE/Editor 관련 파일 무시
+.vscode/
+.idea/
+
+package-lock.json
+package.json
