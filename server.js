@@ -9,15 +9,13 @@ const { MongoClient } = require('mongodb')
 
 //몽고 db 연결 하는 법 
 let db
-const url = 'mongodb사이트에 있던 님들의 접속 URL'
+const url = 
 new MongoClient(url).connect().then((client) => {
     console.log('DB연결성공')
     db = client.db('forum')
-
-    app.listen(8080, () => {
-        console.log('http://localhost:8080 에서 서버 실행중')
+    app.listen(8085, () => { 
+        console.log('http://localhost:8085 에서 서버 실행중')
     })
-
 }).catch((err) => {
     console.log(err)
 })
@@ -34,6 +32,8 @@ app.listen(8080, () => {
 // })
 
 app.get('/news', (요청, 응답) => {
+    db.collection('post').insertOne({ title: '어쩌구' })
+    //db에서 가져오려면 db.collection('db에서의 collection이름')이 코드가 실행되면 insertOne({ title: '어쩌구' })이 데이터가 저장이 된다는 뜻!
     응답.send('오늘 비옴~~~')
 })
 
