@@ -5,6 +5,23 @@ const app = express()
 
 app.use(express.static(__dirname + '/public'))
 
+const { MongoClient } = require('mongodb')
+
+//몽고 db 연결 하는 법 
+let db
+const url = 'mongodb사이트에 있던 님들의 접속 URL'
+new MongoClient(url).connect().then((client) => {
+    console.log('DB연결성공')
+    db = client.db('forum')
+
+    app.listen(8080, () => {
+        console.log('http://localhost:8080 에서 서버 실행중')
+    })
+
+}).catch((err) => {
+    console.log(err)
+})
+
 //밑 코드 서버 띄울↙️↙️ 포트 번호
 app.listen(8080, () => {
     console.log('http://localhost:8080 에서 서버 실행중')
