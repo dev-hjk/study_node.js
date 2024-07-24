@@ -4,12 +4,14 @@ const app = express()
 //이렇게 하면 이제 express문법으로 서버 개발 쉽게 가능
 
 app.use(express.static(__dirname + '/public'))
+app.set('view engine', 'ejs')
+//ejs 셋팅 끝!
 
 const { MongoClient } = require('mongodb')
 
 //몽고 db 연결 하는 법 
 let db
-const url = 'result[0],title';
+const url = '';
 new MongoClient(url).connect().then((client) => {
     console.log('DB연결성공')
     db = client.db('forum')
@@ -75,9 +77,15 @@ app.get('/about', (요청, 응답) => {
 app.get('/list', async (요청, 응답) => {
     let result = await db.collection('post').find().toArray()
     //컬렉션의 document 전부 출력하는 법
-    console.log(result[0], title)
-    응답.send(result[0], title)
+    //응답.send(result[0], title)
     //array, object에서 데이터 뽑는 법
+    //응답.send(result[0].title)
+    응답.render('list.ejs', { 글목록 : result })
+})
+
+app.get('/time', async (요청, 응답) => {
+    
+    응답.render('list.ejs', { data : new Date() })
 })
 
 
